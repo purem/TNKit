@@ -30,8 +30,8 @@ var ENV = require("system").env,
 
 framework ("TNKit", function(task)
 {
-    task.setBuildIntermediatesPath(FILE.join("Build", "TNKit.build", configuration));
-    task.setBuildPath(FILE.join("Build", configuration));
+    task.setBuildIntermediatesPath(FILE.join(ENV["CAPP_BUILD"], "TNKit.build", configuration));
+    task.setBuildPath(FILE.join(ENV["CAPP_BUILD"], configuration));
 
     task.setProductName("TNKit");
     task.setIdentifier("org.archipelproject.TNKit");
@@ -48,6 +48,8 @@ framework ("TNKit", function(task)
     else
         task.setCompilerFlags("-O");
 });
+
+task ("install", ["debug", "release"])
 
 task("build", ["TNKit"]);
 
